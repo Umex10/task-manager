@@ -23,6 +23,11 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      // Allow ts-nocheck pragmas if needed
+      '@typescript-eslint/ban-ts-comment': [
+        'warn',
+        { 'ts-nocheck': false, 'ts-ignore': false, 'ts-expect-error': false, 'ts-check': false },
+      ],
     },
   },
 )

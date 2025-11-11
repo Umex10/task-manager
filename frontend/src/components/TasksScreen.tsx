@@ -45,7 +45,7 @@ const TaskListScreen: React.FC = () => {
         try {
           await api.fetchTasks(listId);
         } catch (error) {
-          console.log("Tasks not available yet");
+          console.log("Tasks not available yet",error);
         }
       } catch (error) {
         console.error("Error loading task list:", error);

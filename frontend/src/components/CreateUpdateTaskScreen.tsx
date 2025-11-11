@@ -21,7 +21,8 @@ const CreateUpdateTaskScreen: React.FC = () => {
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState<Date | undefined>(undefined);
   const [priority, setPriority] = useState(TaskPriority.MEDIUM);
-  const [status, setStatus] = useState<TaskStatus | undefined>(undefined);
+  // Allow status to start undefined; will default to OPEN if not set before submit
+  const [status, setStatus] = useState<TaskStatus | undefined>(TaskStatus.OPEN);
 
   // Load initial data
   useEffect(() => {
@@ -74,7 +75,7 @@ const CreateUpdateTaskScreen: React.FC = () => {
     };
 
     loadInitialData();
-  }, [listId, taskId]);
+  }, [listId, taskId, api, state]);
 
   // Watch for task updates in state
   useEffect(() => {
@@ -104,7 +105,7 @@ const CreateUpdateTaskScreen: React.FC = () => {
           description,
           dueDate,
           priority,
-          status,
+          status: status ?? TaskStatus.OPEN,
         });
       } else {
         await api.createTask(listId, {
@@ -112,7 +113,7 @@ const CreateUpdateTaskScreen: React.FC = () => {
           description,
           dueDate,
           priority,
-          status: undefined,
+          status: TaskStatus.OPEN,
         });
       }
 
