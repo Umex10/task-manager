@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                    .allowedOrigins(
+                    .allowedOriginPatterns(
                         "https://task-manager-87567pd0j-umex10.vercel.app",
                         "http://localhost:5173"
                     )
