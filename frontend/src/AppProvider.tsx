@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useEffect } from "react";
+import React, { createContext, useContext, useReducer, useEffect, useMemo } from "react";
 import axios from "axios";
 import TaskList from "./domain/TaskList";
 import Task from "./domain/Task";
@@ -171,100 +171,69 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const jsonHeaders = {
+  const jsonHeaders = useMemo(() => ({
     headers: { "Content-Type": "application/json" },
-  };
+  }), []);
 
-  // API calls
-  const api: AppContextType["api"] = {
+  // API calls (inline environment variable usage as requested)
+  const api: AppContextType["api"] = useMemo(() => ({
     fetchTaskLists: async () => {
-      const response = await axios.get<TaskList[]>(
-        "/api/task-lists",
-        jsonHeaders
-      );
+      const response = await axios.get<TaskList[]>(`${import.meta.env.VITE_API_BASE_URL}/api/task-lists`, jsonHeaders);
       dispatch({ type: FETCH_TASKLISTS, payload: response.data });
     },
     getTaskList: async (id: string) => {
-      const response = await axios.get<TaskList>(
-        `/api/task-lists/${id}`,
-        jsonHeaders
-      );
+      const response = await axios.get<TaskList>(`${import.meta.env.VITE_API_BASE_URL}/api/task-lists/${id}`, jsonHeaders);
       dispatch({ type: GET_TASKLIST, payload: response.data });
     },
     createTaskList: async (taskList) => {
-      const response = await axios.post<TaskList>(
-        "/api/task-lists",
-        taskList,
-        jsonHeaders
-      );
+      const response = await axios.post<TaskList>(`${import.meta.env.VITE_API_BASE_URL}/api/task-lists`, taskList, jsonHeaders);
       dispatch({ type: CREATE_TASKLIST, payload: response.data });
     },
     getTask: async (taskListId: string, taskId: string) => {
-      const response = await axios.get<Task>(
-        `/api/task-lists/${taskListId}/tasks/${taskId}`,
-        jsonHeaders
-      );
+      const response = await axios.get<Task>(`${import.meta.env.VITE_API_BASE_URL}/api/task-lists/${taskListId}/tasks/${taskId}` , jsonHeaders);
       dispatch({
         type: GET_TASK,
         payload: { taskListId, task: response.data },
       });
     },
     updateTaskList: async (id, taskList) => {
-      const response = await axios.put<TaskList>(
-        `/api/task-lists/${id}`,
-        taskList,
-        jsonHeaders
-      );
+      const response = await axios.put<TaskList>(`${import.meta.env.VITE_API_BASE_URL}/api/task-lists/${id}`, taskList, jsonHeaders);
       dispatch({ type: UPDATE_TASKLIST, payload: response.data });
     },
     deleteTaskList: async (id) => {
-      await axios.delete(`/api/task-lists/${id}`, jsonHeaders);
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/task-lists/${id}`, jsonHeaders);
       dispatch({ type: DELETE_TASKLIST, payload: id });
     },
     fetchTasks: async (taskListId) => {
-      const response = await axios.get<Task[]>(
-        `/api/task-lists/${taskListId}/tasks`,
-        jsonHeaders
-      );
+      const response = await axios.get<Task[]>(`${import.meta.env.VITE_API_BASE_URL}/api/task-lists/${taskListId}/tasks`, jsonHeaders);
       dispatch({
         type: FETCH_TASKS,
         payload: { taskListId, tasks: response.data },
       });
     },
     createTask: async (taskListId, task) => {
-      const response = await axios.post<Task>(
-        `/api/task-lists/${taskListId}/tasks`,
-        task,
-        jsonHeaders
-      );
+      const response = await axios.post<Task>(`${import.meta.env.VITE_API_BASE_URL}/api/task-lists/${taskListId}/tasks`, task, jsonHeaders);
       dispatch({
         type: CREATE_TASK,
         payload: { taskListId, task: response.data },
       });
     },
     updateTask: async (taskListId, taskId, task) => {
-      const response = await axios.put<Task>(
-        `/api/task-lists/${taskListId}/tasks/${taskId}`,
-        task,
-        jsonHeaders
-      );
+      const response = await axios.put<Task>(`${import.meta.env.VITE_API_BASE_URL}/api/task-lists/${taskListId}/tasks/${taskId}`, task, jsonHeaders);
       dispatch({
         type: UPDATE_TASK,
         payload: { taskListId, taskId, task: response.data },
       });
     },
     deleteTask: async (taskListId, taskId) => {
-      await axios.delete(
-        `/api/task-lists/${taskListId}/tasks/${taskId}`,
-        jsonHeaders
-      );
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/task-lists/${taskListId}/tasks/${taskId}`, jsonHeaders);
       dispatch({ type: DELETE_TASK, payload: { taskListId, taskId } });
     },
-  };
+  }), [jsonHeaders, dispatch]);
 
   useEffect(() => {
     api.fetchTaskLists();
-  }, []);
+  }, [api]);
 
   return (
     <AppContext.Provider value={{ state, api }}>{children}</AppContext.Provider>
