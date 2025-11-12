@@ -59,17 +59,6 @@ Das Frontend nutzt **React** und ist in **TypeScript** geschrieben.
 
 Die Anwendung verwendet PostgreSQL, eine relationale Datenbank. 
 - Das Schema wird automatisch generiert durch Hibernate, das als ORM genutzt wird.
-- Beispiel für eine Aufgabe in der Datenbank:
-  ```sql
-  CREATE TABLE tasks (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    description TEXT,
-    status VARCHAR(50),
-    created_at TIMESTAMP DEFAULT NOW(),
-    updated_at TIMESTAMP DEFAULT NOW()
-  );
-  ```
 
 ---
 
