@@ -75,7 +75,8 @@ const CreateUpdateTaskScreen: React.FC = () => {
     };
 
     loadInitialData();
-  }, [listId, taskId, api, state]);
+    // Important: do NOT depend on entire state here to avoid re-fetch loops
+  }, [listId, taskId, api]);
 
   // Watch for task updates in state
   useEffect(() => {
