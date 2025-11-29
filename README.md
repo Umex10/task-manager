@@ -13,7 +13,7 @@ Auch habe ich gelernt, was Docker ist und wie man es nutzt.
 **Motivationstext:** Das ist erst der Anfang – jetzt geht es steil nach oben mit dem Fullstack Development!
 
 Dieses Projekt beinhaltet:
-- Ein **Spring Boot**-Backend für die Geschäftslogik und Datenbankintegration.
+- Ein **S-Boot**-Backend für die Geschäftslogik und Datenbankintegration.
 - Ein **React/TypeScript**-Frontend für die Benutzeroberfläche.
 - Docker-Integration für eine einfache Bereitstellung.
 - Deployment des Backends und der PostgreSQL-Datenbank auf **Railway**.
