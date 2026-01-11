@@ -1,22 +1,24 @@
 # Task Manager
 
-## Projektbeschreibung
+## Project Description
 
-Das **Task Manager Projekt** ist eine vollständige Anwendung, die sowohl ein Backend als auch ein Frontend umfasst. Die Anwendung ermöglicht es Benutzern, Aufgaben zu erstellen, zu verwalten, zu löschen und zu aktualisieren.
+The **Task Manager Project** is a complete application that includes both a backend and a frontend. The application allows users to create, manage, and organize tasks. 
 
-**Das war mein erstes Spring Boot Projekt!**
+**This was my first Spring Boot project!**
 
-In diesem Projekt habe ich sehr viel gelernt, wie z.B. den Umgang mit Packages in Spring Boot, die Bedeutung von `@Beans` und wie man effektiv mit Spring Boot arbeitet. Ich habe verstanden, dass der Controller den Service aufruft, und der Service wiederum das Repository ansteuert.
+In this project, I learned a lot, such as working with packages in Spring Boot, the importance of `@Beans`, and how to work effectively with Spring Boot. I understood that structure and organization are crucial for a successful project.
 
-Auch habe ich gelernt, was Docker ist und wie man es nutzt.
+I also learned what Docker is and how to use it.
 
-**Motivationstext:** Das ist erst der Anfang – jetzt geht es steil nach oben mit dem Fullstack Development!
+**Motivation:** This is just the beginning – now it's going to take off with fullstack development!
 
-Dieses Projekt beinhaltet:
-- Ein **S-Boot**-Backend für die Geschäftslogik und Datenbankintegration.
-- Ein **React/TypeScript**-Frontend für die Benutzeroberfläche.
-- Docker-Integration für eine einfache Bereitstellung.
-- Deployment des Backends und der PostgreSQL-Datenbank auf **Railway**.
-- Deployment des Frontends auf **Vercel**.
+This project includes:
+- A **Spring Boot** backend for business logic and database integration. 
+- A **React/TypeScript** frontend for the user interface. 
+- Docker integration for easy deployment. 
+- Backend and PostgreSQL database deployed on **Railway**.
+- Frontend deployed on **Vercel**.
 
 ---
+Current Date and Time (UTC - YYYY-MM-DD HH:MM:SS formatted): 2026-01-11 10:23:24
+Current User's Login: Umex10
